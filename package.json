@@ -1,0 +1,29 @@
+{
+  "name": "bot-instance",
+  "version": "1.0.0",
+  "description": "It verify if there are existent infractions related to a dni number",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lulil4/bot-instance.git"
+  },
+  "author": "Lucía Morel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lulil4/bot-instance/issues"
+  },
+  "homepage": "https://github.com/Lulil4/bot-instance#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "uuid": "^8.3.2"
+  }
+}
