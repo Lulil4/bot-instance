@@ -10,6 +10,7 @@ const handlerError = (error, req, res, next)=>{
     if(error.name === "CastError"){
         res.status(400).send({error:"DNI con caracteres inválidos"});
     }
+    next(error);
 };
 
 module.exports = {
