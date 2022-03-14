@@ -1,32 +1,25 @@
-//traer data
-const infracciones = require("./src/db/infracciones.json");
+require("./src/db/mongo");
+const {PORT} = require("./src/utils/config");
 const express = require("express"); 
-const cors = require("cors"); 
 const session = require("express-session");
+const infractorsRouter = require("./src/routes/infractorsRouter");
+const sessionRouter = require("./src/routes/sessionDataRouter");
+const { handlerError, handlerNotFound } = require("./src/utils/middleware");
 
 const app = express();
 app.use(express.json()); 
-app.use(cors());
 app.use(session({
     secret:"secretKey",
     resave:false,
     saveUninitialized:true
 }))
 
-app.get("/contextoInicial", (req, res) => {
-    res.json({botName: "Lola", botId: req.sessionID, author:"Lucía Morel"})
-});
+app.use("/api/sessionData/", sessionRouter);
+app.use("/api/infractores/", infractorsRouter);
 
-app.post("/obtenerInfracciones/$userDNI", (req, res, next) => {
-  ///  console.log(req.body)
-   // res.send("$ works ")
-    //remove dots, validate only numbers with specific range
-   // let {userDNI} = req.body;
-   // let infractor = infracciones.some((infraction)=> {return infraction.dni == userDNI});
-   // res.json({userDNI: userDNI, infractor : infractor});
-});
+app.use(handlerNotFound); 
+app.use(handlerError); 
 
-
-app.listen(3000, ()=>{ 
-    console.log("Hi! I'm up at http://localhost:3000" );
+app.listen(PORT, ()=>{ 
+    console.log("Hi! I'm up at http://localhost:" + PORT);
 });
