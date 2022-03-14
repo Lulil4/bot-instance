@@ -7,8 +7,8 @@ infractorsRouter.post("/obtenerInfracciones/:userDNI", async (req, res, next) =>
     userDNI = userDNI.replaceAll(/[.]/g, "");
 
     try{
-        const infraction = await Infraction.find({dni: userDNI});
-        if (infraction != false){
+        const infraction = await Infraction.findOne({dni: userDNI});
+        if (infraction != null){
             isInfractor = true;
         }
         res.json({userDNI: userDNI, infractor : isInfractor});
